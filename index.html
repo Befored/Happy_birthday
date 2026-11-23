@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>С Днем Рождения! 20 лет 🎉</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Cinzel:wght@600;800;900&family=Montserrat:wght@400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,800;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       ВЕРХНЯЯ НАВИГАЦИОННАЯ ПАНЕЛЬ И ПРОГРЕСС-БАР
+       ========================================================================= -->
+  <header class="app-header">
+    <div class="header-content">
+      <div class="header-logo">
+        <span class="logo-icon">👑</span>
+        <span class="logo-text" id="headerSisterBadge">Сестрёнка • 20 лет</span>
+      </div>
+
+      <!-- Прогресс шагов -->
+      <nav class="steps-nav" aria-label="Прогресс страниц">
+        <button class="step-pill active" data-step="1">
+          <span class="step-num">1</span>
+          <span class="step-label">Мафия</span>
+        </button>
+        <div class="step-line"></div>
+        <button class="step-pill" data-step="2">
+          <span class="step-num">2</span>
+          <span class="step-label">Покер</span>
+        </button>
+        <div class="step-line"></div>
+        <button class="step-pill" data-step="3">
+          <span class="step-num">3</span>
+          <span class="step-label">Архив 20</span>
+        </button>
+      </nav>
+
+      <!-- Кнопка звуковых эффектов -->
+      <button class="sound-toggle-btn" id="soundToggleBtn" title="Включить/выключить звуки">
+        <span class="sound-icon">🔊</span>
+        <span class="sound-text">Звук</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       ОСНОВНОЙ КОНТЕЙНЕР ЭКРАНОВ
+       ========================================================================= -->
+  <main class="main-container">
+
+    <!-- =======================================================================
+         ЭКРАН 1: ТЕМА «МАФИЯ» (ТАИНСТВЕННОСТЬ И ФОНАРИК)
+         ======================================================================= -->
+    <section class="screen-view active" id="screen1">
+      <div class="mafia-room-bg"></div>
+      <div class="mafia-vignette"></div>
+
+      <!-- Заголовок страницы 1 -->
+      <div class="screen-heading mafia-heading">
+        <span class="secret-stamp">СОВЕРШЕННО СЕКРЕТНО</span>
+        <h1 class="screen-title" id="s1Title">ДЕЛО № 20: РАССЛЕДОВАНИЕ ВЕКА</h1>
+        <p class="screen-subtitle" id="s1Subtitle">Город засыпает... Просыпается именинница</p>
+      </div>
+
+      <!-- Рабочая сетка по эскизу пользователя -->
+      <div class="mafia-desk-layout">
+
+        <!-- ФРЕЙМ 1 (верхний левый угол): Карточка Брата с переворотом -->
+        <aside class="mafia-frame frame-1" id="frame1">
+          <div class="role-flip-card" id="roleCard1" title="Нажми, чтобы вскрыть карту">
+            <div class="role-card-inner">
+              <!-- Лицевая сторона: Карта Мафии -->
+              <div class="role-card-side role-card-front">
+                <div class="card-badge-top">КАРТА РОЛИ</div>
+                <div class="card-img-wrapper">
+                  <img id="s1Card1Cover" src="images/mafia.png" alt="Карта Мафии" loading="lazy" style="object-position: center 20%;">
+                </div>
+                <div class="role-card-hint">Нажми, чтобы вскрыть 👆</div>
+              </div>
+              <!-- Оборотная сторона: Реальное фото Брата -->
+              <div class="role-card-side role-card-back">
+                <div class="card-badge-top">ДОСЬЕ: СЕМЬЯ</div>
+                <div class="card-img-wrapper">
+                  <img id="s1Card1Img" src="images/ruzil.jpg" alt="Брат" loading="lazy" style="object-position: center 20%;">
+                </div>
+                <div class="card-dossier-info">
+                  <h3 id="s1Card1Role">КАРТА: МАФИЯ</h3>
+                  <p class="card-quote" id="s1Card1Quote">«Ей теперь 20... надо быть осторожнее»</p>
+                  <div class="dossier-stamp" id="s1Card1Status">Главный зачинщик</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- ЦЕНТРАЛЬНЫЙ ФРЕЙМ: ТЕКСТ В ТЕМНОТЕ (ОСВЕЩАЕТСЯ ФОНАРИКОМ) -->
+        <article class="mafia-center-frame" id="mafiaCenterFrame">
+          <div class="folder-header">
+            <span class="folder-tab">📁 ДЕЛО № 20-ЮБИЛЕЙ</span>
+            <span class="classified-mark">TOP SECRET // EYES ONLY</span>
+          </div>
+
+          <!-- Контейнер для скрытого текста с маской света фонарика -->
+          <div class="hidden-text-container" id="hiddenTextContainer">
+            <!-- Начальное сообщение-подсказка в темноте -->
+            <div class="darkness-cover" id="darknessCover">
+              <div class="cover-hint">
+                <span class="cover-icon">🔦</span>
+                <p>Текст скрыт в темноте!<br>Возьми фонарик в левом нижнем углу и посвети сюда.</p>
+              </div>
+            </div>
+
+            <!-- Сам поздравительный секретный текст -->
+            <div class="revealed-secret-text" id="revealedSecretText">
+              <h2 class="secret-doc-title" id="s1LetterTitle">ПРОТОКОЛ ДОПРОСА ЮБИЛЯРШИ</h2>
+              <div class="secret-doc-meta" id="s1LetterDate">Возраст подозреваемой: ровно 20 лет</div>
+              <div class="secret-paragraphs" id="s1Paragraphs">
+                <!-- Текст динамически подставляется из config.js -->
+              </div>
+              <div class="signature-line">
+                <span>Подпись следователя: <em>Твой любимый брат 🕵️‍♂️</em></span>
+                <span class="approved-stamp">ОДОБРЕНО К ПРАЗДНОВАНИЮ</span>
+              </div>
+            </div>
+
+            <!-- Световой луч фонарика (spotlight halo) -->
+            <div class="spotlight-beam" id="spotlightBeam"></div>
+          </div>
+
+          <!-- Мобильная кнопка подсветки на случай если неудобно водить пальцем -->
+          <div class="mobile-light-assist">
+            <button class="assist-light-btn" id="toggleFullLightBtn">
+              💡 <span id="fullLightBtnText">Включить верхний свет</span>
+            </button>
+          </div>
+        </article>
+
+        <!-- ФРЕЙМ 2 (верхний правый угол): Карточка Тёти с переворотом -->
+        <aside class="mafia-frame frame-2" id="frame2">
+          <div class="role-flip-card" id="roleCard2" title="Нажми, чтобы вскрыть карту">
+            <div class="role-card-inner">
+              <!-- Лицевая сторона: Карта Шерифа -->
+              <div class="role-card-side role-card-front">
+                <div class="card-badge-top">КАРТА РОЛИ</div>
+                <div class="card-img-wrapper">
+                  <img id="s1Card2Cover" src="images/sherif.png" alt="Карта Шерифа" loading="lazy" style="object-position: center 10%;">
+                </div>
+                <div class="role-card-hint">Нажми, чтобы вскрыть 👆</div>
+              </div>
+              <!-- Оборотная сторона: Реальное фото Тёти -->
+              <div class="role-card-side role-card-back">
+                <div class="card-badge-top">ИНТУИЦИЯ</div>
+                <div class="card-img-wrapper">
+                  <img id="s1Card2Img" src="images/Apa.jpg" alt="Тётя" loading="lazy">
+                </div>
+                <div class="card-dossier-info">
+                  <h3 id="s1Card2Role">КОМИССАР — ТЁТЯ</h3>
+                  <p class="card-quote" id="s1Card2Quote">«Интуиция не врёт — моя девочка самая лучшая. Она не может быть мафией»</p>
+                  <div class="dossier-stamp" id="s1Card2Status">ГЛАВНЫЙ ЗАЩИТНИК</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+
+        <!-- ФРЕЙМ 3 (левый нижний угол): ФОНАРИК НА СТОЛЕ -->
+        <div class="mafia-frame frame-3" id="frame3">
+          <div class="flashlight-dock" id="flashlightDock" title="Нажми, чтобы взять фонарик!">
+            <div class="dock-label" id="flashlightHintText">🔦 Нажми, чтобы взять фонарик</div>
+            <div class="flashlight-item" id="flashlightItem">
+              <img src="images/flashlight.png" alt="Фонарик" class="flashlight-img">
+              <div class="flashlight-glow-orb"></div>
+            </div>
+            <div class="flashlight-status" id="flashlightStatusBadge">СТАТУС: ВЫКЛЮЧЕН</div>
+          </div>
+        </div>
+
+        <!-- ФРЕЙМ 4 (правый нижний угол): ТУСКЛО СВЕТЯЩАЯСЯ КНОПКА «ДАЛЬШЕ» -->
+        <div class="mafia-frame frame-4" id="frame4">
+          <div class="next-btn-container">
+            <button class="dim-glow-button" id="s1NextBtn">
+              <span class="btn-ambient-pulse"></span>
+              <span class="btn-text" id="s1NextBtnText">Дальше в казино ➔</span>
+            </button>
+            <div class="dim-btn-hint">ждет твоего хода... главное вовремя остановиться</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =======================================================================
+         ЭКРАН 2: ТЕМА «ПОКЕР / КАЗИНО»
+         ======================================================================= -->
+    <section class="screen-view" id="screen2">
+      <div class="casino-room-bg"></div>
+      <div class="casino-lights"></div>
+
+      <!-- Заголовок страницы 2 -->
+      <div class="screen-heading casino-heading">
+        <div class="casino-chips-deco left">
+          <img src="images/chips.svg" alt="Фишки" width="55">
+        </div>
+        <div class="heading-text-group">
+          <h1 class="screen-title gold-gradient" id="s2Title">ROYAL FLUSH НА 20 ЛЕТ</h1>
+          <p class="screen-subtitle" id="s2Subtitle">Из колоды сдано 5 карт. Нажимай на каждую, чтобы вскрыть карты судьбы!</p>
+        </div>
+        <div class="casino-chips-deco right">
+          <img src="images/chips.svg" alt="Фишки" width="55">
+        </div>
+      </div>
+
+      <!-- ПОКЕРНЫЙ СТОЛ (Овал с зеленым сукном и кожаным бортом) -->
+      <div class="poker-table-outer">
+        <div class="poker-table-felt" id="pokerTableFelt">
+          
+          <!-- Золотое тиснение по центру стола -->
+          <div class="felt-center-logo">
+            <div class="felt-crown">👑</div>
+            <div class="felt-brand">VIP POKER CLUB • SISTER 20</div>
+            <div class="cards-flipped-counter" id="cardsFlippedCounter">Открыто карт: 0 / 5</div>
+          </div>
+
+          <!-- Ряд из 5 покерных карт по центру стола -->
+          <div class="poker-cards-row" id="pokerCardsRow">
+            <!-- Карты генерируются динамически из config.js -->
+          </div>
+
+          <!-- КОЛОДА КАРТ В ПРАВОМ НИЖНЕМ УГЛУ СТОЛА -->
+          <div class="poker-deck-dock" id="pokerDeckDock">
+            <div class="deck-title">КОЛОДА КАРТ</div>
+            <div class="deck-stack" id="pokerDeckStack" title="Нажми, чтобы перераздать карты!">
+              <div class="stacked-card card-layer-3"><img src="images/card_back.svg" alt="Рубашка"></div>
+              <div class="stacked-card card-layer-2"><img src="images/card_back.svg" alt="Рубашка"></div>
+              <div class="stacked-card card-layer-1"><img src="images/card_back.svg" alt="Рубашка"></div>
+              <div class="deck-pulse-ring"></div>
+            </div>
+            <button class="redeal-btn" id="redealBtn" title="Сдать заново">Раздать ещё раз ↺</button>
+          </div>
+
+          <!-- Победный баннер при открытии всех карт -->
+          <div class="poker-combo-banner" id="pokerComboBanner">
+            <div class="combo-icon">🏆</div>
+            <div class="combo-text">
+              <h3>ПОБЕДНАЯ КОМБИНАЦИЯ: ROYAL FLUSH!</h3>
+              <p>20 лет — твой абсолютный выигрыш во всём! Жизнь только начинается, ну а мы идем дальше.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Модальное окно / Подробный просмотр открытой карты -->
+      <div class="card-detail-drawer" id="cardDetailDrawer">
+        <div class="drawer-header">
+          <span class="drawer-card-badge" id="drawerCardBadge">10 ♠</span>
+          <h3 id="drawerCardTitle">Заголовок карты</h3>
+          <button class="drawer-close-btn" id="drawerCloseBtn">✕</button>
+        </div>
+        <p class="drawer-card-wish" id="drawerCardWish">Текст пожелания...</p>
+      </div>
+
+      <!-- Кнопка перехода на экран 3 (снизу) -->
+      <div class="screen2-bottom-bar">
+        <button class="nav-back-btn" id="s2BackBtn">← Назад к мафии</button>
+        <button class="gold-luxury-btn" id="s2NextBtn">
+          <span class="btn-sparkle">✨</span>
+          <span id="s2NextBtnText">Перейти к фотоархиву ➔</span>
+        </button>
+      </div>
+    </section>
+
+
+    <!-- =======================================================================
+         ЭКРАН 3: ФОТОГАЛЕРЕЯ «ОЖИДАНИЕ VS РЕАЛЬНОСТЬ»
+         ======================================================================= -->
+    <section class="screen-view" id="screen3">
+      <div class="warm-room-bg"></div>
+
+      <div class="warm-content-wrapper">
+        
+        <!-- Верхний заголовок и текст -->
+        <header class="screen-heading warm-heading">
+          <div class="anniversary-badge">🎂 20 YEARS ANNIVERSARY</div>
+          <h1 class="screen-title warm-title" id="s3TopTitle">ГАЛЕРЕЯ ВОСПОМИНАНИЙ</h1>
+          <p class="screen-subtitle warm-subtitle" id="s3TopSubtitle">Раздел 1: Парадная версия для соцсетей</p>
+        </header>
+
+        <!-- БЛОК 1: ДИНАМИЧЕСКАЯ КРУГОВАЯ КАРУСЕЛЬ ФОТОГРАФИЙ -->
+        <div class="carousel-container" id="photoCarousel">
+          <div class="carousel-stage" id="carouselStage">
+            <!-- Динамические карточки в бесконечном круге генерируются из config.js -->
+          </div>
+
+          <!-- Кнопки листания влево/вправо -->
+          <button class="carousel-nav-btn prev" id="carouselPrevBtn" aria-label="Предыдущее фото">
+            <span>‹</span>
+          </button>
+          <button class="carousel-nav-btn next" id="carouselNextBtn" aria-label="Следующее фото">
+            <span>›</span>
+          </button>
+
+          <!-- Индикаторы (точки) -->
+          <div class="carousel-dots" id="carouselDots">
+            <!-- Точки генерируются скриптом -->
+          </div>
+        </div>
+
+        <!-- РАЗДЕЛИТЕЛЬ С ПОДКОЛОМ / КОЛКОСТЬЮ -->
+        <div class="roast-divider-box">
+          <div class="divider-lightning">⚡ 🤫 ⚡</div>
+          <h2 class="divider-title" id="s3DividerTitle">А ТЕПЕРЬ СУРОВАЯ ДОМАШНЯЯ ПРАВДА...</h2>
+          <p class="divider-subtitle" id="s3DividerSubtitle">То, что не попадает в сторис, но навсегда остаётся в братском архиве:</p>
+        </div>
+
+        <!-- БЛОК 2: СТАТИЧНЫЕ ФОТОГРАФИИ (ПОЛАРОИДЫ / ДОМАШНИЙ ВИД) -->
+        <div class="static-photos-grid" id="staticPhotosGrid">
+          <!-- Полароиды генерируются динамически из config.js -->
+        </div>
+
+        <!-- БЛОК 3: ФИНАЛЬНЫЙ ПРАЗДНИЧНЫЙ ТОСТ И САЛЮТ -->
+        <footer class="final-celebration-card" id="finalCard">
+          <div class="party-popper-emoji">🎉</div>
+          <h2 class="final-title" id="s3FinalTitle">С 20-летием тебя, сестрёнка!</h2>
+          <p class="final-message" id="s3FinalText">Оставайся всегда такой же яркой, веселой, слегка вредной и безумно счастливой!</p>
+          
+          <div class="final-actions">
+            <button class="restart-quest-btn" id="restartQuestBtn">
+              <span id="s3RestartBtnText">Пройти квест заново ↺</span>
+            </button>
+          </div>
+        </footer>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Модальное окно увеличения фотографии (Lightbox) -->
+  <div class="lightbox-modal" id="lightboxModal">
+    <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+    <div class="lightbox-content">
+      <button class="lightbox-close-btn" id="lightboxCloseBtn">✕</button>
+      <img id="lightboxImg" src="" alt="Просмотр фото">
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+
+  <!-- Холст для конфетти/салюта -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Скрипты -->
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
