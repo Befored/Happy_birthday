@@ -259,6 +259,7 @@
   let isFullLightOn = false;
   const flashlightDock = document.getElementById('flashlightDock');
   const hiddenTextContainer = document.getElementById('hiddenTextContainer');
+  const darknessCover = document.getElementById('darknessCover');
   const flashlightStatusBadge = document.getElementById('flashlightStatusBadge');
   const toggleFullLightBtn = document.getElementById('toggleFullLightBtn');
   const fullLightBtnText = document.getElementById('fullLightBtnText');
@@ -276,20 +277,34 @@
       // Позиционируем свет по центру контейнера для мгновенного эффекта
       if (hiddenTextContainer) {
         const rect = hiddenTextContainer.getBoundingClientRect();
-        updateSpotlightPos(rect.width / 2, rect.height / 2);
+        updateSpotlightPos(rect.width / 2, Math.min(120, rect.height / 3));
       }
     } else {
       document.body.classList.remove('flashlight-active');
       if (flashlightStatusBadge) flashlightStatusBadge.textContent = 'СТАТУС: ВЫКЛЮЧЕН';
+      if (darknessCover) {
+        darknessCover.style.background = '';
+      }
       updateSpotlightPos(-500, -500);
     }
   }
 
   function updateSpotlightPos(x, y) {
     if (!hiddenTextContainer) return;
+
+    const isMobile = window.innerWidth <= 768;
+    const radius = isMobile ? 85 : 130;
+    const innerR = Math.round(radius * 0.45);
+    const midR = Math.round(radius * 0.8);
+
     hiddenTextContainer.style.setProperty('--spotlight-x', `${x}px`);
     hiddenTextContainer.style.setProperty('--spotlight-y', `${y}px`);
-    hiddenTextContainer.style.setProperty('--spotlight-radius', `140px`);
+    hiddenTextContainer.style.setProperty('--spotlight-radius', `${radius}px`);
+
+    // Прямой радиальный вырез в слое темноты — работает на 100% мобилок (iOS, Android) и ПК
+    if (darknessCover && isFlashlightActive && !isFullLightOn) {
+      darknessCover.style.background = `radial-gradient(circle ${radius}px at ${x}px ${y}px, rgba(254, 240, 138, 0.12) 0%, transparent ${innerR}px, rgba(2, 3, 5, 0.95) ${midR}px, #020305 ${radius}px)`;
+    }
   }
 
   // Обработка движения мыши и тач-событий пальцем
@@ -319,6 +334,12 @@
       handlePointerMove(e);
     }
   });
+
+  document.addEventListener('touchmove', (e) => {
+    if (isFlashlightActive && currentScreen === 1) {
+      handlePointerMove(e);
+    }
+  }, { passive: true });
 
   if (flashlightDock) {
     flashlightDock.addEventListener('click', () => toggleFlashlight());
@@ -354,6 +375,12 @@
       } else {
         document.body.classList.remove('full-light-on');
         fullLightBtnText.textContent = 'Включить верхний свет';
+        if (isFlashlightActive && hiddenTextContainer) {
+          const rect = hiddenTextContainer.getBoundingClientRect();
+          updateSpotlightPos(rect.width / 2, Math.min(120, rect.height / 3));
+        } else if (darknessCover) {
+          darknessCover.style.background = '';
+        }
       }
     });
   }
