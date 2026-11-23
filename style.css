@@ -1817,10 +1817,10 @@ body.flashlight-active .flashlight-status {
     padding: 16px;
     min-height: 380px;
     cursor: pointer;
+    touch-action: none; /* Луч фонарика плавно ходит за пальцем без дрожания страницы */
   }
 
-  /* На телефонах: при включении фонарика или тапе на текст полностью открываем видимость */
-  body.flashlight-active .revealed-secret-text,
+  /* Только при включении верхнего света кнопкой открываем видимость целиком */
   body.full-light-on .revealed-secret-text {
     -webkit-mask-image: none !important;
     mask-image: none !important;

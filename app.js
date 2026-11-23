@@ -339,12 +339,6 @@
       if (!isFlashlightActive) {
         toggleFlashlight(true);
       }
-      // На смартфонах при клике сразу зажигаем полный свет, чтобы текст легко читался
-      if (window.innerWidth <= 768 && !isFullLightOn) {
-        isFullLightOn = true;
-        document.body.classList.add('full-light-on');
-        if (fullLightBtnText) fullLightBtnText.textContent = 'Выключить верхний свет';
-      }
     });
   }
 
