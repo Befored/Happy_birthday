@@ -200,7 +200,17 @@
       if (document.getElementById('s1LetterDate')) document.getElementById('s1LetterDate').textContent = s1.hiddenLetter.date || '';
       const pContainer = document.getElementById('s1Paragraphs');
       if (pContainer && s1.hiddenLetter.paragraphs) {
-        pContainer.innerHTML = s1.hiddenLetter.paragraphs.map(p => `<p>${p}</p>`).join('');
+        pContainer.innerHTML = s1.hiddenLetter.paragraphs.map(p => {
+          // Автоматическая очистка Unicode-зачеркивания (U+0336), чтобы на смартфонах не было квадратов
+          let cleanText = p;
+          if (cleanText.includes('\u0336') || cleanText.includes('\u0335')) {
+            cleanText = cleanText.replace(/((?:[^\s\u0336\u0335][\u0336\u0335]+|\s+[\u0336\u0335]+)+)/gu, (match) => {
+              const stripped = match.replace(/[\u0336\u0335]/gu, '');
+              return `<s>${stripped}</s>`;
+            });
+          }
+          return `<p>${cleanText}</p>`;
+        }).join('');
       }
     }
 
@@ -326,8 +336,14 @@
 
     // Клик по темной зоне, если фонарик еще не взят — автоматическое включение
     hiddenTextContainer.addEventListener('click', () => {
-      if (!isFlashlightActive && !isFullLightOn) {
+      if (!isFlashlightActive) {
         toggleFlashlight(true);
+      }
+      // На смартфонах при клике сразу зажигаем полный свет, чтобы текст легко читался
+      if (window.innerWidth <= 768 && !isFullLightOn) {
+        isFullLightOn = true;
+        document.body.classList.add('full-light-on');
+        if (fullLightBtnText) fullLightBtnText.textContent = 'Выключить верхний свет';
       }
     });
   }

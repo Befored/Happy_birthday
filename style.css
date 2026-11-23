@@ -557,7 +557,7 @@ body.flashlight-active .darkness-cover {
 .revealed-secret-text {
   position: relative;
   z-index: 5;
-  color: #94a3b8;
+  color: #f1f5f9;
   user-select: text;
   
   -webkit-mask-image: radial-gradient(circle var(--spotlight-radius, 140px) at var(--spotlight-x, -500px) var(--spotlight-y, -500px), black 30%, rgba(0, 0, 0, 0) 100%);
@@ -572,13 +572,14 @@ body.full-light-on .revealed-secret-text {
 
 body.full-light-on .darkness-cover {
   opacity: 0 !important;
+  pointer-events: none !important;
 }
 
 .secret-doc-title {
   font-family: var(--font-mafia);
   font-size: clamp(17px, 2.2vw, 22px);
   font-weight: 800;
-  color: #e2e8f0;
+  color: #fde047;
   margin-bottom: 6px;
   text-align: center;
   letter-spacing: 1px;
@@ -587,23 +588,33 @@ body.full-light-on .darkness-cover {
 .secret-doc-meta {
   text-align: center;
   font-size: 11px;
-  color: #64748b;
+  color: #94a3b8;
   margin-bottom: 20px;
   padding-bottom: 10px;
   border-bottom: 1px solid #141820;
 }
 
 .secret-paragraphs p {
-  font-size: clamp(13px, 1.35vw, 15px);
+  font-size: clamp(14px, 1.35vw, 16px);
   line-height: 1.7;
-  color: #8b99aa;
+  color: #e2e8f0;
   margin-bottom: 16px;
   text-align: justify;
 }
 
 .secret-paragraphs p:first-of-type {
   font-weight: 700;
-  color: #cbd5e1;
+  color: #fde047;
+}
+
+.secret-paragraphs s,
+.secret-paragraphs del,
+s, del {
+  text-decoration: line-through;
+  text-decoration-color: rgba(255, 255, 255, 0.85); /* Белая линия зачёркивания */
+  text-decoration-thickness: 1px;                   /* Тонкая линия (1px) */
+  color: #cbd5e1;                                   /* Цвет самого зачёркнутого текста */
+  opacity: 0.85;
 }
 
 .signature-line {
@@ -1390,6 +1401,7 @@ body.flashlight-active .flashlight-status {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  
 }
 
 .card-info-box {
@@ -1804,6 +1816,32 @@ body.flashlight-active .flashlight-status {
   .hidden-text-container {
     padding: 16px;
     min-height: 380px;
+    cursor: pointer;
+  }
+
+  /* На телефонах: при включении фонарика или тапе на текст полностью открываем видимость */
+  body.flashlight-active .revealed-secret-text,
+  body.full-light-on .revealed-secret-text {
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    opacity: 1 !important;
+  }
+
+  body.flashlight-active .darkness-cover,
+  body.full-light-on .darkness-cover {
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+
+  .assist-light-btn {
+    font-size: 13px;
+    padding: 10px 16px;
+    background: #141a24;
+    color: #fde047;
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    font-weight: 700;
+    width: 100%;
+    margin-top: 10px;
   }
 
   /* Покерный стол на мобилках */
